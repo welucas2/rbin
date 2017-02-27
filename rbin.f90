@@ -48,7 +48,7 @@ integer, allocatable :: npartblocks(:) !number of particles in each block
 integer*8 :: iuniquemax
 
 !npart contains number of current data, whether for 1 block or a whole simulation
-integer :: npart, n1, n2, nreassign, naccrete, nkill, nblocks, iyr, idum, iv(NTAB)
+integer :: npart, n1, n2, nreassign, naccrete, nkill, nblocks, iyr, iv(NTAB)
 integer :: iplanetesimals, irotpot, idragscheme
 integer :: numberarray, icount, icountsink
 integer :: nptmass
@@ -98,7 +98,7 @@ CONTAINS
   integer :: ierr !error return from extract
   
   character(len=100) :: fileident
-  integer :: number
+  integer :: number, idum
   
   character*16, dimension(128) :: tagsreal
   
