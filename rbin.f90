@@ -3,7 +3,6 @@
 !Subroutine to read data in is also here.
 !This is a transliteration of Ian's read code rather than rdump.
 !Created: 30 November 2012
-!Last modified: 18 Feburary 2015
 !Revision list:
 !     - 18 Feb 2015 Enable reading of tagged files
 !Bugs: - There seems to be an issue in OSX wherein deallocated arrays are still retained
@@ -75,7 +74,8 @@ integer, parameter :: nsinkmax = 2000
 integer :: listpm(nsinkmax)
 real :: spinx(nsinkmax), spiny(nsinkmax), spinz(nsinkmax)
 real :: angaddx(nsinkmax), angaddy(nsinkmax), angaddz(nsinkmax)
-real ::  spinadx(nsinkmax), spinady(nsinkmax), spinadz(nsinkmax)
+real :: spinadx(nsinkmax), spinady(nsinkmax), spinadz(nsinkmax)
+real :: sink_create_time(nsinkmax)
 
 !RT data
 integer*2, allocatable :: nneigh(:)
@@ -461,6 +461,12 @@ CONTAINS
   read(10) spinady(icountsink+1:icountsink+nptmass)  
   IF (tagged) read(10) tagi !skip tag
   read(10) spinadz(icountsink+1:icountsink+nptmass)
+  !If it's there, read the sink creation times that are used during
+  !an active SN feedback simulation.
+  IF (numssink(6) == 10) THEN
+    IF (tagged) read(10) tagi
+    read(10) sink_create_time(icountsink+1:icountsink+nptmass)
+  END IF
   
 !I'm just not sure about this point onwards - if RT comes into things
 ! (and it probably won't) then check it. But that won't be the case.
