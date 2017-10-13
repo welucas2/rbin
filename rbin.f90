@@ -335,6 +335,13 @@ CONTAINS
     read(10) number8, numsRT(1:8)
     print *, "numsRT ", numsRT(1:8)
   END IF
+  IF (icountsink+nptmass > nsinkmax) THEN
+    print *, "- - - ERROR - - - -"
+    print *, "No. of sinks will exceed nsinkmax - increase it."
+    print *, icountsink, nptmass, nsinkmax
+    print *, "- - - EXITING - - -"
+    STOP
+  END IF
   
   ic1 = icount + 1
   ic2 = icount + 2
