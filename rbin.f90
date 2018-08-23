@@ -404,15 +404,19 @@ CONTAINS
   IF (igradh == 1) THEN
     IF (nums(7) >= 2) THEN
       print *, "Reading gradh..."
-      IF (tagged) read(10) tagi !skip tag
-      print *, "tag is ", trim(tagi)  
+      IF (tagged) THEN
+        read(10) tagi !skip tag
+        print *, "tag is ", trim(tagi)
+      END IF  
       read(10) gradh(icount+1:icount+npart)
       print *, "gradh: ", gradh(ic1:ic3)
     END IF
     IF (nums(7) >= 3) THEN
       print *, "Reading gradhsoft..."
-      IF (tagged) read(10) tagi !skip tag
-      print *, "tag is ", trim(tagi)  
+      IF (tagged) THEN
+        read(10) tagi !skip tag
+        print *, "tag is ", trim(tagi)  
+      END IF
       read(10) gradhsoft(icount+1:icount+npart)
       print *, "gradhsoft: ", gradhsoft(ic1:ic3)
     END IF
